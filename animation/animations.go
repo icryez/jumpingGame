@@ -3,8 +3,9 @@ package animation
 import (
 	"fmt"
 	colors "jumpingGame/colours"
-	"jumpingGame/terminal"
 	"jumpingGame/mapModule"
+	"jumpingGame/structs"
+	"jumpingGame/terminal"
 	"time"
 )
 
@@ -14,8 +15,14 @@ func Tick() {
 	gameOver = false
 	for gameOver == false {
 		time.Sleep(900 * time.Millisecond)
-		mapModule.GenMap()
-		grid:=mapModule.Grid
+		mapModule.GenFgrid()
+		printGrid(mapModule.Fgrid)
+	}
+
+}
+
+func printGrid(grid [30][100]structs.Cell){
+
 		terminal.CallClear()
 		for r := range grid {
 			for _, val := range grid[r] {
@@ -27,6 +34,4 @@ func Tick() {
 			}
 			fmt.Println()
 		}
-	}
-
 }

@@ -7,8 +7,6 @@ import (
 
 var Fgrid [30][100]structs.Cell
 var nextObsStart int
-
-// var Sgrid [30][100]structs.Cell
 var MainGrid [30][100]structs.Cell
 
 // func GenSgrid() {
