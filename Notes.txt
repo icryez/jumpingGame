@@ -7,3 +7,6 @@ Goal : make a moving screen with moving obstacles.
 Thoughts : make a ticking system???
 
 write code to gen obstacles using a random number generator which will determine top obstacle - render it and determine bottom obstacle height after subtracting space needed for player to pass through. //printing each top/bottom obstacle n^2
+
+
+Instead of looping through column of the matrix and copying values one by one, try creating a rotated matrix and simply do matrix1[i] = matrix2[j].
