@@ -9,19 +9,10 @@ var Fgrid [30][100]structs.Cell
 var nextObsStart int
 var MainGrid [30][100]structs.Cell
 
-// func GenSgrid() {
-// 	Sgrid = [30][100]structs.Cell{}
-// 	for i := 20; i < 100; i++ {
-// 		nextObsStart = i
-// 		hTop := rand.Intn(20)
-// 		GenObs(hTop, 1)
-// 		i = i + 20
-// 	}
-// }
 
 func GenFgrid() {
 	Fgrid = [30][100]structs.Cell{}
-	for i := 20; i < 100; i++ {
+	for i := 0; i < 100; i++ {
 		nextObsStart = i
 		hTop := rand.Intn(20)
 		GenObs(hTop, 2)
@@ -36,9 +27,6 @@ func GenObs(heigth int, grid int) {
 			if grid == 2 {
 				Fgrid[k][i].IsVisible = true
 			}
-			// } else {
-			// 	Sgrid[k][i].IsVisible = true
-			// }
 		}
 	}
 	for k := heigth + 6; k < 30; k++ {
@@ -46,9 +34,6 @@ func GenObs(heigth int, grid int) {
 			if grid == 2 {
 				Fgrid[k][h].IsVisible = true
 			}
-			// } else {
-			// 	Sgrid[k][h].IsVisible = true
-			// }
 		}
 	}
 }
