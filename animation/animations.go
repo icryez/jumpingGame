@@ -28,7 +28,7 @@ func printGrid(grid [30][100]structs.Cell) {
 	terminal.CallClear()
 	for r := range grid {
 		for c, val := range grid[r] {
-			if player.PlayerCoords[[2]int{r, c}] {
+			if player.PlayerCoordsMap.GetPlayCoord([2]int{r, c},true) {
 				colors.Yellow.Print(" ")
 			} else if val.IsVisible {
 				colors.Green.Print(" ")
@@ -54,14 +54,36 @@ func AnimateToLeft() {
 
 func StartPlayerGravity() {
 	for GameInProgress {
-		for k := range player.PlayerCoords {
-			time.Sleep(100 * time.Millisecond)
-			if k[0] < 29 {
-				player.PlayerCoords[[2]int{k[0] + 1, k[1]}] = true
-				delete(player.PlayerCoords, k)
+		time.Sleep(500 * time.Millisecond)
+		for _, v := range player.PlayerCoordsMap.Keys() {
+			if v[0] < 29 {
+				player.PlayerCoordsMap.Lock()
+				player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] + 4, v[1]}, true, false)
+				player.PlayerCoordsMap.DeletePlayerCoords(v,false)
+				player.PlayerCoordsMap.Unlock()
 			} else {
 				GameInProgress = false
 			}
+		}
+	}
+}
+
+func ListenForJumps() {
+	for GameInProgress {
+			jump()
+	}
+}
+
+func jump() {
+	time.Sleep(200 * time.Millisecond)
+	for _, v := range player.PlayerCoordsMap.Keys() {
+		if v[0] >= 0 {
+			player.PlayerCoordsMap.Lock()
+			player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] - 2, v[1]}, true, false)
+			player.PlayerCoordsMap.DeletePlayerCoords(v,false)
+			player.PlayerCoordsMap.Unlock()
+		} else {
+			GameInProgress = false
 		}
 	}
 }

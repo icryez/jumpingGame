@@ -13,6 +13,7 @@ func main() {
 	player.PlayerStart()
 	animation.FgridCurrCol = 0
 	go animation.StartPlayerGravity()
+	go animation.ListenForJumps()
 	for animation.GameInProgress {
 		time.Sleep(200* time.Millisecond)
 		animation.AnimateToLeft()
