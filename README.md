@@ -38,3 +38,5 @@ This project aims to recreate the classic game Flappy Bird using terminal-based 
 
 ## Conclusion:
 This Flappy Bird Terminal Game project provides a fun and challenging experience for players within the confines of a terminal window. It demonstrates the capabilities of Go programming language in creating simple games and showcases the potential of terminal-based graphics for game development.
+
+Note: Currently only working on Linux and WSL2.
