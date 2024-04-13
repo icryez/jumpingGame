@@ -17,19 +17,9 @@ func PlayerStart() {
 
 func createPlayerModel() {
 	PlayerCoordsMap = *NewPlayerCoordsMap()
-	// PlayerCoordsMap.SetPlayerCoord([2]int{14, 6}, true,true)
-	PlayerCoordsMap.SetPlayerCoord([2]int{15, 6}, true,true)
-	// PlayerCoordsMap.SetPlayerCoord([2]int{14, 7}, true,true)
-	PlayerCoordsMap.SetPlayerCoord([2]int{15, 7}, true,true)
-	// PlayerCoordsMap.SetPlayerCoord([2]int{14, 8}, true,true)
-	PlayerCoordsMap.SetPlayerCoord([2]int{15, 8}, true,true)
-	// PlayerCoords = make(map[[2]int]bool)
-	// PlayerCoords[[2]int{14, 6}] = true
-	// PlayerCoords[[2]int{15, 6}] = true
-	// PlayerCoords[[2]int{14, 7}] = true
-	// PlayerCoords[[2]int{15, 7}] = true
-	// PlayerCoords[[2]int{14, 8}] = true
-	// PlayerCoords[[2]int{15, 8}] = true
+	PlayerCoordsMap.SetPlayerCoord([2]int{15, 6}, true, true)
+	PlayerCoordsMap.SetPlayerCoord([2]int{15, 7}, true, true)
+	PlayerCoordsMap.SetPlayerCoord([2]int{15, 8}, true, true)
 }
 
 func NewPlayerCoordsMap() *PlayerCoords {
@@ -43,11 +33,10 @@ func (m *PlayerCoords) GetPlayCoord(key [2]int, lock bool) bool {
 		m.Lock()
 	}
 	defer func() {
-		if(lock){
+		if lock {
 			m.Unlock()
 		}
 	}()
-	// defer m.Unlock()
 	return m.m[key]
 }
 
@@ -56,7 +45,7 @@ func (m *PlayerCoords) SetPlayerCoord(key [2]int, val bool, lock bool) {
 		m.Lock()
 	}
 	defer func() {
-		if(lock){
+		if lock {
 			m.Unlock()
 		}
 	}()
@@ -68,7 +57,7 @@ func (m *PlayerCoords) DeletePlayerCoords(key [2]int, lock bool) {
 		m.Lock()
 	}
 	defer func() {
-		if(lock){
+		if lock {
 			m.Unlock()
 		}
 	}()

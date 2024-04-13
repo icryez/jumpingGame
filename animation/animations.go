@@ -56,11 +56,11 @@ func AnimateToLeft() {
 
 func StartPlayerGravity() {
 	for GameInProgress {
-		time.Sleep(800 * time.Millisecond)
+		time.Sleep(600 * time.Millisecond)
 		for _, v := range player.PlayerCoordsMap.Keys() {
-			if v[0] < 29 {
+			if v[0] < 29 && v[0] >= 0 && !mapModule.MainGrid[v[0]][v[1]].IsVisible {
 				player.PlayerCoordsMap.Lock()
-				player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] + 1, v[1]}, true, false)
+				player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] + 2, v[1]}, true, false)
 				player.PlayerCoordsMap.DeletePlayerCoords(v, false)
 				player.PlayerCoordsMap.Unlock()
 			} else {
@@ -86,9 +86,8 @@ func ListenForJumps() {
 }
 
 func jump() {
-	// time.Sleep(200 * time.Millisecond)
 	for _, v := range player.PlayerCoordsMap.Keys() {
-		if v[0] >= 0 {
+		if v[0] >= 0 && v[0] < 29 && !mapModule.MainGrid[v[0]][v[1]].IsVisible {
 			player.PlayerCoordsMap.Lock()
 			player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] - 1, v[1]}, true, false)
 			player.PlayerCoordsMap.DeletePlayerCoords(v, false)

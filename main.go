@@ -2,8 +2,10 @@ package main
 
 import (
 	"jumpingGame/animation"
+	colors "jumpingGame/colours"
 	"jumpingGame/mapModule"
 	"jumpingGame/player"
+	"jumpingGame/terminal"
 	"time"
 )
 
@@ -15,12 +17,14 @@ func main() {
 	go animation.StartPlayerGravity()
 	go animation.ListenForJumps()
 	for animation.GameInProgress {
-		time.Sleep(200* time.Millisecond)
+		time.Sleep(200 * time.Millisecond)
 		animation.AnimateToLeft()
 		if animation.FgridCurrCol == 100 {
-		animation.FgridCurrCol = 0
+			animation.FgridCurrCol = 0
 			mapModule.GenFgrid()
 		}
 	}
+	time.Sleep(100 * time.Millisecond)
+	terminal.CallClear()
+	colors.Red.Println("############# GAME OVER ############")
 }
-
