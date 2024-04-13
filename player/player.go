@@ -17,11 +17,11 @@ func PlayerStart() {
 
 func createPlayerModel() {
 	PlayerCoordsMap = *NewPlayerCoordsMap()
-	PlayerCoordsMap.SetPlayerCoord([2]int{14, 6}, true,true)
+	// PlayerCoordsMap.SetPlayerCoord([2]int{14, 6}, true,true)
 	PlayerCoordsMap.SetPlayerCoord([2]int{15, 6}, true,true)
-	PlayerCoordsMap.SetPlayerCoord([2]int{14, 7}, true,true)
+	// PlayerCoordsMap.SetPlayerCoord([2]int{14, 7}, true,true)
 	PlayerCoordsMap.SetPlayerCoord([2]int{15, 7}, true,true)
-	PlayerCoordsMap.SetPlayerCoord([2]int{14, 8}, true,true)
+	// PlayerCoordsMap.SetPlayerCoord([2]int{14, 8}, true,true)
 	PlayerCoordsMap.SetPlayerCoord([2]int{15, 8}, true,true)
 	// PlayerCoords = make(map[[2]int]bool)
 	// PlayerCoords[[2]int{14, 6}] = true

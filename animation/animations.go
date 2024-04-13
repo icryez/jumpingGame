@@ -7,6 +7,8 @@ import (
 	"jumpingGame/player"
 	"jumpingGame/structs"
 	"jumpingGame/terminal"
+	"os"
+	"os/exec"
 	"time"
 )
 
@@ -28,7 +30,7 @@ func printGrid(grid [30][100]structs.Cell) {
 	terminal.CallClear()
 	for r := range grid {
 		for c, val := range grid[r] {
-			if player.PlayerCoordsMap.GetPlayCoord([2]int{r, c},true) {
+			if player.PlayerCoordsMap.GetPlayCoord([2]int{r, c}, true) {
 				colors.Yellow.Print(" ")
 			} else if val.IsVisible {
 				colors.Green.Print(" ")
@@ -54,12 +56,12 @@ func AnimateToLeft() {
 
 func StartPlayerGravity() {
 	for GameInProgress {
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(800 * time.Millisecond)
 		for _, v := range player.PlayerCoordsMap.Keys() {
 			if v[0] < 29 {
 				player.PlayerCoordsMap.Lock()
-				player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] + 4, v[1]}, true, false)
-				player.PlayerCoordsMap.DeletePlayerCoords(v,false)
+				player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] + 1, v[1]}, true, false)
+				player.PlayerCoordsMap.DeletePlayerCoords(v, false)
 				player.PlayerCoordsMap.Unlock()
 			} else {
 				GameInProgress = false
@@ -69,18 +71,27 @@ func StartPlayerGravity() {
 }
 
 func ListenForJumps() {
+	// disable input buffering
+	exec.Command("stty", "-F", "/dev/tty", "cbreak", "min", "1").Run()
+	// do not display entered characters on the screen
+	exec.Command("stty", "-F", "/dev/tty", "-echo").Run()
+	var b []byte = make([]byte, 1)
+
 	for GameInProgress {
+		os.Stdin.Read(b)
+		if string(b) == " " {
 			jump()
+		}
 	}
 }
 
 func jump() {
-	time.Sleep(200 * time.Millisecond)
+	// time.Sleep(200 * time.Millisecond)
 	for _, v := range player.PlayerCoordsMap.Keys() {
 		if v[0] >= 0 {
 			player.PlayerCoordsMap.Lock()
-			player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] - 2, v[1]}, true, false)
-			player.PlayerCoordsMap.DeletePlayerCoords(v,false)
+			player.PlayerCoordsMap.SetPlayerCoord([2]int{v[0] - 1, v[1]}, true, false)
+			player.PlayerCoordsMap.DeletePlayerCoords(v, false)
 			player.PlayerCoordsMap.Unlock()
 		} else {
 			GameInProgress = false
