@@ -1,5 +1,8 @@
 # Project Description: Flappy Bird Terminal Game
 
+![Screencast from 2024-04-13 13-18-06](https://github.com/icryez/jumpingGame/assets/35337801/25365d10-1426-4bd8-ba85-b512c2773066)
+
+
 ## Overview:
 This project aims to recreate the classic game Flappy Bird using terminal-based graphics and Go programming language. The game features a bird that the player must navigate through a series of obstacles by jumping at the right time.
 
