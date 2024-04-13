@@ -18,6 +18,7 @@ var FgridCurrCol int
 func Tick() {
 	GameInProgress = true
 	mapModule.GenFgrid()
+	terminal.CallClear()
 	for GameInProgress {
 		time.Sleep(10 * time.Millisecond)
 		printGrid(mapModule.MainGrid)
@@ -27,7 +28,9 @@ func Tick() {
 
 func printGrid(grid [30][100]structs.Cell) {
 
-	terminal.CallClear()
+	// terminal.CallClear()
+
+	terminal.MoveCursor(0, 0)
 	for r := range grid {
 		for c, val := range grid[r] {
 			if player.PlayerCoordsMap.GetPlayCoord([2]int{r, c}, true) {
@@ -40,6 +43,7 @@ func printGrid(grid [30][100]structs.Cell) {
 		}
 		fmt.Println()
 	}
+	terminal.CallFlush()
 }
 
 func AnimateToLeft() {

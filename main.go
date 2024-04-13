@@ -25,6 +25,7 @@ func main() {
 		}
 	}
 	time.Sleep(100 * time.Millisecond)
-	terminal.CallClear()
+	terminal.CallClearCmd()
+	terminal.MoveCursor(0,0)
 	colors.Red.Println("############# GAME OVER ############")
 }
