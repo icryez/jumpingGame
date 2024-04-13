@@ -27,9 +27,6 @@ func Tick() {
 }
 
 func printGrid(grid [30][100]structs.Cell) {
-
-	// terminal.CallClear()
-
 	terminal.MoveCursor(0, 0)
 	for r := range grid {
 		for c, val := range grid[r] {
