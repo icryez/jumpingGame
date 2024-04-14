@@ -6,10 +6,15 @@ import (
 	"jumpingGame/mapModule"
 	"jumpingGame/player"
 	"jumpingGame/terminal"
+	"os"
 	"time"
+
+	tm "laptudirm.com/x/terminal"
 )
 
 func main() {
+	term := tm.New(os.Stdout)
+	term.HideCursor()
 	animation.GameInProgress = true
 	go animation.Tick()
 	player.PlayerStart()
@@ -24,8 +29,9 @@ func main() {
 			mapModule.GenFgrid()
 		}
 	}
-	time.Sleep(100 * time.Millisecond)
+	time.Sleep(200 * time.Millisecond)
 	terminal.CallClearCmd()
-	terminal.MoveCursor(0,0)
+	terminal.MoveCursor(0, 0)
+	term.ShowCursor()
 	colors.Red.Println("############# GAME OVER ############")
 }
