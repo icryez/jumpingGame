@@ -29,9 +29,9 @@ func main() {
 			mapModule.GenFgrid()
 		}
 	}
+	term.ShowCursor()
 	time.Sleep(200 * time.Millisecond)
 	terminal.CallClearCmd()
 	terminal.MoveCursor(0, 0)
-	term.ShowCursor()
 	colors.Red.Println("############# GAME OVER ############")
 }
