@@ -1,6 +1,5 @@
 # Project Description: Flappy Bird Terminal Game
-
-![Screencast from 2024-04-13 13-18-06](https://github.com/icryez/jumpingGame/assets/35337801/25365d10-1426-4bd8-ba85-b512c2773066)
+![Screencast from 2024-05-06 02-39-44(1)](https://github.com/icryez/jumpingGame/assets/35337801/e13d42ea-a36b-4ba2-bfdb-20232bf66696)
 
 
 ## Overview:
